@@ -2,17 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@clerk/nextjs';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const { isSignedIn, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Update active section based on scroll position
       const sections = ['work', 'services', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -30,132 +31,93 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileMenuOpen]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-sm border-b' : 'bg-background'
-      }`}
-    >
-      <nav className="container mx-auto px-4 max-w-7xl py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-lg font-bold">Organic Marketing</span>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-sm border-b' : ''}`}>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="text-xl font-bold">
+            Organic Marketing
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {['work', 'services', 'team', 'contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className={`text-muted-foreground hover:text-foreground transition-colors capitalize ${
-                  activeSection === section ? 'text-foreground font-medium' : ''
-                }`}
-              >
-                {section}
-              </button>
-            ))}
-            <Link 
-              href="/dashboard" 
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium hover:bg-primary/90 transition-colors"
-            >
-              Dashboard
+            <Link href="/#work" className={`hover:text-primary ${activeSection === 'work' ? 'text-primary' : ''}`}>
+              Work
             </Link>
+            <Link href="/#services" className={`hover:text-primary ${activeSection === 'services' ? 'text-primary' : ''}`}>
+              Services
+            </Link>
+            <Link href="/#contact" className={`hover:text-primary ${activeSection === 'contact' ? 'text-primary' : ''}`}>
+              Contact
+            </Link>
+            {isSignedIn ? (
+              <Link href="/dashboard">
+                <Button variant="default">Dashboard</Button>
+              </Link>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link href="/sign-in">
+                  <Button variant="ghost">Sign In</Button>
+                </Link>
+                <Link href="/sign-up">
+                  <Button variant="default">Sign Up</Button>
+                </Link>
+              </div>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2"
-            aria-label="Toggle menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg
               className="h-6 w-6"
               fill="none"
-              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-              />
+              {isMobileMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-50 md:hidden">
-            <div 
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <div className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-background border-l">
-              <div className="flex items-center justify-between p-4 border-b">
-                <span className="text-lg font-medium">Menu</span>
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 text-muted-foreground hover:text-foreground"
-                  aria-label="Close menu"
-                >
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <nav className="p-4 space-y-4">
-                {['work', 'services', 'team', 'contact'].map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`block w-full text-left text-lg text-muted-foreground hover:text-foreground transition-colors capitalize ${
-                      activeSection === section ? 'text-foreground font-medium' : ''
-                    }`}
-                  >
-                    {section}
-                  </button>
-                ))}
-                <Link 
-                  href="/dashboard"
-                  className="block w-full bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium hover:bg-primary/90 transition-colors text-center"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Dashboard
+          <div className="md:hidden py-4 space-y-4">
+            <Link href="/#work" className="block hover:text-primary">
+              Work
+            </Link>
+            <Link href="/#services" className="block hover:text-primary">
+              Services
+            </Link>
+            <Link href="/#contact" className="block hover:text-primary">
+              Contact
+            </Link>
+            {isSignedIn ? (
+              <Link href="/dashboard">
+                <Button className="w-full" variant="default">Dashboard</Button>
+              </Link>
+            ) : (
+              <div className="space-y-2">
+                <Link href="/sign-in">
+                  <Button className="w-full" variant="ghost">Sign In</Button>
                 </Link>
-              </nav>
-            </div>
+                <Link href="/sign-up">
+                  <Button className="w-full" variant="default">Sign Up</Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
-      </nav>
-    </header>
+      </div>
+    </nav>
   );
 } 
