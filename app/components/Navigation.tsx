@@ -1,21 +1,22 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { useAuth, UserButton } from '@clerk/nextjs';
-import { Loader2 } from 'lucide-react';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useAuth, UserButton } from "@clerk/nextjs";
+import { Loader2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
   const { isSignedIn, isLoaded } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = ['work', 'services', 'contact'];
+      const sections = ["work", "services", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -28,12 +29,14 @@ export default function Navigation() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-sm border-b' : ''}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-sm border-b" : ""}`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-xl font-bold">
@@ -42,13 +45,22 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/#work" className={`hover:text-primary ${activeSection === 'work' ? 'text-primary' : ''}`}>
+            <Link
+              href="/#work"
+              className={`hover:text-primary ${activeSection === "work" ? "text-primary" : ""}`}
+            >
               Work
             </Link>
-            <Link href="/#services" className={`hover:text-primary ${activeSection === 'services' ? 'text-primary' : ''}`}>
+            <Link
+              href="/#services"
+              className={`hover:text-primary ${activeSection === "services" ? "text-primary" : ""}`}
+            >
               Services
             </Link>
-            <Link href="/#contact" className={`hover:text-primary ${activeSection === 'contact' ? 'text-primary' : ''}`}>
+            <Link
+              href="/#contact"
+              className={`hover:text-primary ${activeSection === "contact" ? "text-primary" : ""}`}
+            >
               Contact
             </Link>
             {!isLoaded ? (
@@ -118,7 +130,9 @@ export default function Navigation() {
             ) : isSignedIn ? (
               <div className="space-y-2">
                 <Link href="/dashboard">
-                  <Button className="w-full" variant="default">Dashboard</Button>
+                  <Button className="w-full" variant="default">
+                    Dashboard
+                  </Button>
                 </Link>
                 <div className="flex justify-center">
                   <UserButton afterSignOutUrl="/" />
@@ -127,10 +141,14 @@ export default function Navigation() {
             ) : (
               <div className="space-y-2">
                 <Link href="/sign-in">
-                  <Button className="w-full" variant="ghost">Sign In</Button>
+                  <Button className="w-full" variant="ghost">
+                    Sign In
+                  </Button>
                 </Link>
                 <Link href="/sign-up">
-                  <Button className="w-full" variant="default">Sign Up</Button>
+                  <Button className="w-full" variant="default">
+                    Sign Up
+                  </Button>
                 </Link>
               </div>
             )}
@@ -139,4 +157,4 @@ export default function Navigation() {
       </div>
     </nav>
   );
-} 
+}

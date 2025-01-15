@@ -1,16 +1,11 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Heart, History, Image, LayoutDashboard, Settings } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import {
-  LayoutDashboard,
-  Image,
-  History,
-  Settings,
-  Heart,
-} from "lucide-react";
 
 const routes = [
   {
@@ -72,4 +67,4 @@ export function Sidebar() {
       </div>
     </div>
   );
-} 
+}

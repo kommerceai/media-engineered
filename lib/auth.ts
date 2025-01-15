@@ -1,5 +1,6 @@
-import { supabase } from "./supabase";
 import { currentUser } from "@clerk/nextjs/server";
+
+import { supabase } from "./supabase";
 
 export type AuthSession = {
   userId: string;
@@ -49,7 +50,7 @@ export async function createSupabaseSession(session: AuthSession) {
 export async function getCurrentUser() {
   try {
     const user = await currentUser();
-    
+
     if (!user) return null;
 
     const { data: dbUser, error } = await supabase
@@ -64,4 +65,4 @@ export async function getCurrentUser() {
     console.error("Error getting current user:", error);
     return null;
   }
-} 
+}

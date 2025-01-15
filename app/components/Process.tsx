@@ -1,28 +1,32 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const steps = [
   {
-    number: '01',
-    title: 'Discovery Call',
-    description: 'We start with understanding your goals, audience, and current challenges.'
+    number: "01",
+    title: "Discovery Call",
+    description:
+      "We start with understanding your goals, audience, and current challenges.",
   },
   {
-    number: '02',
-    title: 'Strategy Development',
-    description: 'Our team creates a customized growth plan tailored to your needs.'
+    number: "02",
+    title: "Strategy Development",
+    description:
+      "Our team creates a customized growth plan tailored to your needs.",
   },
   {
-    number: '03',
-    title: 'Implementation',
-    description: 'We execute the strategy with continuous optimization and adjustments.'
+    number: "03",
+    title: "Implementation",
+    description:
+      "We execute the strategy with continuous optimization and adjustments.",
   },
   {
-    number: '04',
-    title: 'Growth & Scaling',
-    description: 'Monitor results and scale successful strategies for sustained growth.'
-  }
+    number: "04",
+    title: "Growth & Scaling",
+    description:
+      "Monitor results and scale successful strategies for sustained growth.",
+  },
 ];
 
 export default function Process() {
@@ -36,7 +40,9 @@ export default function Process() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Process</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Our Process
+          </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
             A proven methodology to help you achieve your goals
           </p>
@@ -56,10 +62,12 @@ export default function Process() {
                 <span className="text-4xl font-bold text-yellow-300 mb-4 block">
                   {step.number}
                 </span>
-                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {step.title}
+                </h3>
                 <p className="text-zinc-400">{step.description}</p>
               </div>
-              
+
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-yellow-300 transform -translate-y-1/2" />
               )}
@@ -69,4 +77,4 @@ export default function Process() {
       </div>
     </section>
   );
-} 
+}

@@ -1,8 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type Metric = {
   label: string;
@@ -26,76 +33,147 @@ type CaseStudy = {
 const caseStudies: CaseStudy[] = [
   {
     title: "Scaling Skool Launch Program",
-    description: "Helped Christian Crenshaw, founder of CommunityLaunch.com and partner at SocialMize, scale his Skool Launch program through optimized advertising and community engagement.",
+    description:
+      "Helped Christian Crenshaw, founder of CommunityLaunch.com and partner at SocialMize, scale his Skool Launch program through optimized advertising and community engagement.",
     industry: "Education & Community",
     metrics: [
-      { label: "Revenue Generated", value: "97", suffix: "K+", subtext: "in one reporting period" },
-      { label: "Premium Members", value: "143", suffix: "", subtext: "$997/month mastermind" },
-      { label: "Community Growth", value: "4.9", suffix: "K+", subtext: "active members" },
-      { label: "Ad Cost Reduction", value: "500", prefix: "-$", suffix: "", subtext: "wasted spend eliminated" },
-      { label: "Click-Through Rate", value: "3.11", suffix: "%", subtext: "campaign average" },
-      { label: "Cost per Click", value: "0.29", prefix: "$", subtext: "optimized campaigns" }
+      {
+        label: "Revenue Generated",
+        value: "97",
+        suffix: "K+",
+        subtext: "in one reporting period",
+      },
+      {
+        label: "Premium Members",
+        value: "143",
+        suffix: "",
+        subtext: "$997/month mastermind",
+      },
+      {
+        label: "Community Growth",
+        value: "4.9",
+        suffix: "K+",
+        subtext: "active members",
+      },
+      {
+        label: "Ad Cost Reduction",
+        value: "500",
+        prefix: "-$",
+        suffix: "",
+        subtext: "wasted spend eliminated",
+      },
+      {
+        label: "Click-Through Rate",
+        value: "3.11",
+        suffix: "%",
+        subtext: "campaign average",
+      },
+      {
+        label: "Cost per Click",
+        value: "0.29",
+        prefix: "$",
+        subtext: "optimized campaigns",
+      },
     ],
     duration: "Since February 2024",
-    tags: ["Community Building", "Facebook Ads", "Instagram Ads", "Funnel Optimization"],
+    tags: [
+      "Community Building",
+      "Facebook Ads",
+      "Instagram Ads",
+      "Funnel Optimization",
+    ],
     challenges: [
       "Establishing strong market presence",
       "Optimizing campaign performance",
-      "Scaling monthly recurring revenue"
+      "Scaling monthly recurring revenue",
     ],
     strategies: [
       "Targeted social media advertising",
       "Community engagement optimization",
       "Data-driven campaign adjustments",
-      "Sales funnel optimization"
-    ]
+      "Sales funnel optimization",
+    ],
   },
   {
     title: "E-commerce Revenue Growth",
-    description: "Helped an online retailer increase their revenue through targeted social media campaigns and content optimization.",
+    description:
+      "Helped an online retailer increase their revenue through targeted social media campaigns and content optimization.",
     industry: "E-commerce",
     metrics: [
-      { label: "Revenue Increase", value: "156", suffix: "%", subtext: "year-over-year growth" },
-      { label: "Social Engagement", value: "3.2", suffix: "x", subtext: "increase in interactions" },
-      { label: "Conversion Rate", value: "4.8", suffix: "%", subtext: "from social traffic" }
+      {
+        label: "Revenue Increase",
+        value: "156",
+        suffix: "%",
+        subtext: "year-over-year growth",
+      },
+      {
+        label: "Social Engagement",
+        value: "3.2",
+        suffix: "x",
+        subtext: "increase in interactions",
+      },
+      {
+        label: "Conversion Rate",
+        value: "4.8",
+        suffix: "%",
+        subtext: "from social traffic",
+      },
     ],
     duration: "6 months",
-    tags: ["Social Media", "Content Marketing", "SEO"]
+    tags: ["Social Media", "Content Marketing", "SEO"],
   },
   {
     title: "B2B Lead Generation",
-    description: "Developed a comprehensive lead generation strategy for a B2B software company.",
+    description:
+      "Developed a comprehensive lead generation strategy for a B2B software company.",
     industry: "Technology",
     metrics: [
-      { label: "Qualified Leads", value: "250", suffix: "+", subtext: "sales-ready leads" },
-      { label: "Cost per Lead", value: "42", prefix: "-", suffix: "%", subtext: "reduction in CAC" },
-      { label: "Sales Pipeline", value: "2.1", suffix: "M", subtext: "potential revenue" }
+      {
+        label: "Qualified Leads",
+        value: "250",
+        suffix: "+",
+        subtext: "sales-ready leads",
+      },
+      {
+        label: "Cost per Lead",
+        value: "42",
+        prefix: "-",
+        suffix: "%",
+        subtext: "reduction in CAC",
+      },
+      {
+        label: "Sales Pipeline",
+        value: "2.1",
+        suffix: "M",
+        subtext: "potential revenue",
+      },
     ],
     duration: "8 months",
-    tags: ["Lead Generation", "Content Marketing", "Marketing Automation"]
-  }
+    tags: ["Lead Generation", "Content Marketing", "Marketing Automation"],
+  },
 ];
 
-const allTags = Array.from(new Set(caseStudies.flatMap(study => study.tags)));
-const allIndustries = Array.from(new Set(caseStudies.map(study => study.industry)));
+const allTags = Array.from(new Set(caseStudies.flatMap((study) => study.tags)));
+const allIndustries = Array.from(
+  new Set(caseStudies.map((study) => study.industry))
+);
 
 export default function CaseStudies() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedIndustry, setSelectedIndustry] = useState<string>("");
 
-  const filteredStudies = caseStudies.filter(study => {
-    const matchesTags = selectedTags.length === 0 || 
-      selectedTags.every(tag => study.tags.includes(tag));
-    const matchesIndustry = !selectedIndustry || 
-      study.industry === selectedIndustry;
+  const filteredStudies = caseStudies.filter((study) => {
+    const matchesTags =
+      selectedTags.length === 0 ||
+      selectedTags.every((tag) => study.tags.includes(tag));
+    const matchesIndustry =
+      !selectedIndustry || study.industry === selectedIndustry;
     return matchesTags && matchesIndustry;
   });
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
@@ -103,7 +181,7 @@ export default function CaseStudies() {
     <section id="case-studies" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12">Case Studies</h2>
-        
+
         {/* Filters */}
         <div className="mb-8 space-y-4">
           <div>
@@ -116,10 +194,12 @@ export default function CaseStudies() {
               >
                 All
               </Button>
-              {allIndustries.map(industry => (
+              {allIndustries.map((industry) => (
                 <Button
                   key={industry}
-                  variant={selectedIndustry === industry ? "default" : "outline"}
+                  variant={
+                    selectedIndustry === industry ? "default" : "outline"
+                  }
                   onClick={() => setSelectedIndustry(industry)}
                   className="text-sm"
                 >
@@ -128,11 +208,11 @@ export default function CaseStudies() {
               ))}
             </div>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-medium mb-2">Filter by Service</h3>
             <div className="flex flex-wrap gap-2">
-              {allTags.map(tag => (
+              {allTags.map((tag) => (
                 <Button
                   key={tag}
                   variant={selectedTags.includes(tag) ? "default" : "outline"}
@@ -149,7 +229,10 @@ export default function CaseStudies() {
         {/* Case Studies Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredStudies.map((study, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-shadow">
+            <Card
+              key={index}
+              className="group hover:shadow-lg transition-shadow"
+            >
               <CardHeader>
                 <CardTitle>{study.title}</CardTitle>
                 <CardDescription className="text-sm text-muted-foreground">
@@ -157,8 +240,10 @@ export default function CaseStudies() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="mb-4 text-muted-foreground">{study.description}</p>
-                
+                <p className="mb-4 text-muted-foreground">
+                  {study.description}
+                </p>
+
                 {study.challenges && (
                   <div className="mb-4">
                     <h4 className="font-medium mb-2">Challenges</h4>
@@ -174,12 +259,18 @@ export default function CaseStudies() {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   {study.metrics.map((metric, idx) => (
                     <div key={idx} className="space-y-1">
-                      <p className="text-sm text-muted-foreground">{metric.label}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {metric.label}
+                      </p>
                       <p className="text-2xl font-bold">
-                        {metric.prefix}{metric.value}{metric.suffix}
+                        {metric.prefix}
+                        {metric.value}
+                        {metric.suffix}
                       </p>
                       {metric.subtext && (
-                        <p className="text-xs text-muted-foreground">{metric.subtext}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {metric.subtext}
+                        </p>
                       )}
                     </div>
                   ))}
@@ -214,4 +305,4 @@ export default function CaseStudies() {
       </div>
     </section>
   );
-} 
+}

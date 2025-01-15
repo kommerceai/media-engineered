@@ -1,41 +1,58 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  ArrowRight,
+  BarChart,
+  Check,
+  MessageCircle,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight, Zap, Users, BarChart, MessageCircle, Target, TrendingUp } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const features = [
   {
     icon: <BarChart className="w-6 h-6 text-primary" />,
     title: "Data-Driven Strategy",
-    description: "Strategic planning backed by analytics and market insights."
+    description: "Strategic planning backed by analytics and market insights.",
   },
   {
     icon: <Users className="w-6 h-6 text-primary" />,
     title: "Community Building",
-    description: "Foster engaged communities that drive organic growth."
+    description: "Foster engaged communities that drive organic growth.",
   },
   {
     icon: <MessageCircle className="w-6 h-6 text-primary" />,
     title: "Content Creation",
-    description: "Compelling content that resonates with your target audience."
+    description: "Compelling content that resonates with your target audience.",
   },
   {
     icon: <Target className="w-6 h-6 text-primary" />,
     title: "Campaign Optimization",
-    description: "Continuous improvement of campaign performance."
+    description: "Continuous improvement of campaign performance.",
   },
   {
     icon: <TrendingUp className="w-6 h-6 text-primary" />,
     title: "Growth Analytics",
-    description: "Detailed tracking and reporting of key metrics."
+    description: "Detailed tracking and reporting of key metrics.",
   },
   {
     icon: <Zap className="w-6 h-6 text-primary" />,
     title: "Performance Marketing",
-    description: "Results-driven approach to digital marketing."
-  }
+    description: "Results-driven approach to digital marketing.",
+  },
 ];
 
 const tiers = [
@@ -48,8 +65,8 @@ const tiers = [
       "Basic Content Creation",
       "Monthly Performance Reports",
       "Community Management",
-      "Email Support"
-    ]
+      "Email Support",
+    ],
   },
   {
     name: "Growth",
@@ -61,9 +78,9 @@ const tiers = [
       "Influencer Collaborations",
       "Weekly Strategy Calls",
       "Priority Support",
-      "Custom Analytics Dashboard"
+      "Custom Analytics Dashboard",
     ],
-    popular: true
+    popular: true,
   },
   {
     name: "Enterprise",
@@ -75,9 +92,9 @@ const tiers = [
       "Custom Strategy Development",
       "24/7 Priority Support",
       "Advanced Analytics",
-      "Brand Partnership Opportunities"
-    ]
-  }
+      "Brand Partnership Opportunities",
+    ],
+  },
 ];
 
 export default function Services() {
@@ -93,7 +110,8 @@ export default function Services() {
         >
           <h2 className="text-3xl font-bold sm:text-4xl mb-4">Our Services</h2>
           <p className="text-lg text-muted-foreground">
-            Comprehensive digital marketing solutions to help your brand grow organically and sustainably.
+            Comprehensive digital marketing solutions to help your brand grow
+            organically and sustainably.
           </p>
         </motion.div>
 
@@ -143,7 +161,9 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className={`relative h-full ${tier.popular ? 'border-primary shadow-lg' : ''}`}>
+              <Card
+                className={`relative h-full ${tier.popular ? "border-primary shadow-lg" : ""}`}
+              >
                 {tier.popular && (
                   <div className="absolute top-0 right-0 -translate-y-1/2 px-3 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full">
                     Popular
@@ -154,7 +174,9 @@ export default function Services() {
                   <CardDescription>{tier.description}</CardDescription>
                   <div className="mt-4">
                     <span className="text-4xl font-bold">${tier.price}</span>
-                    {tier.price !== "Custom" && <span className="text-muted-foreground">/month</span>}
+                    {tier.price !== "Custom" && (
+                      <span className="text-muted-foreground">/month</span>
+                    )}
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -168,7 +190,7 @@ export default function Services() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button 
+                  <Button
                     className="w-full group relative overflow-hidden"
                     variant={tier.popular ? "default" : "outline"}
                   >
@@ -188,4 +210,4 @@ export default function Services() {
       </div>
     </section>
   );
-} 
+}

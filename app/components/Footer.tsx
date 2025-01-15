@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { FiInstagram, FiTwitter, FiYoutube, FiLinkedin } from 'react-icons/fi';
+import { FiInstagram, FiLinkedin, FiTwitter, FiYoutube } from "react-icons/fi";
 
 const navigation = {
   main: [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'FAQ', href: '#faq' },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Process", href: "#process" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "FAQ", href: "#faq" },
   ],
   social: [
     {
-      name: 'Instagram',
-      href: '#',
+      name: "Instagram",
+      href: "#",
       icon: FiInstagram,
     },
     {
-      name: 'Twitter',
-      href: '#',
+      name: "Twitter",
+      href: "#",
       icon: FiTwitter,
     },
     {
-      name: 'YouTube',
-      href: '#',
+      name: "YouTube",
+      href: "#",
       icon: FiYoutube,
     },
     {
-      name: 'LinkedIn',
-      href: '#',
+      name: "LinkedIn",
+      href: "#",
       icon: FiLinkedin,
     },
   ],
@@ -42,7 +42,8 @@ export default function Footer() {
           <div className="space-y-8 xl:col-span-1">
             <h3 className="text-2xl font-bold text-white">Organic Marketing</h3>
             <p className="text-zinc-400 max-w-xs">
-              Helping creators achieve sustainable growth through authentic engagement and strategic content.
+              Helping creators achieve sustainable growth through authentic
+              engagement and strategic content.
             </p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (
@@ -84,19 +85,18 @@ export default function Footer() {
                     hello@organicmarketing.com
                   </a>
                 </li>
-                <li className="text-zinc-400">
-                  Washington, DC
-                </li>
+                <li className="text-zinc-400">Washington, DC</li>
               </ul>
             </div>
           </div>
         </div>
         <div className="mt-12 border-t border-zinc-800 pt-8">
           <p className="text-zinc-400 text-sm">
-            © {new Date().getFullYear()} Organic Marketing. All rights reserved.
+            © {new Date().getFullYear()} Organic Marketing. All rights
+            reserved.
           </p>
         </div>
       </div>
     </footer>
   );
-} 
+}

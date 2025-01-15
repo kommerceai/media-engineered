@@ -6,20 +6,20 @@ interface TimelineItem {
 const timelineItems: TimelineItem[] = [
   {
     title: "Discovery Call",
-    description: "We'll discuss your goals and current social media presence"
+    description: "We'll discuss your goals and current social media presence",
   },
   {
     title: "Strategy Development",
-    description: "Our team creates a customized growth plan for your brand"
+    description: "Our team creates a customized growth plan for your brand",
   },
   {
     title: "Implementation",
-    description: "We execute the strategy with regular optimization"
+    description: "We execute the strategy with regular optimization",
   },
   {
     title: "Growth & Scaling",
-    description: "Monitor results and scale successful strategies"
-  }
+    description: "Monitor results and scale successful strategies",
+  },
 ];
 
 export default function Timeline() {
@@ -38,4 +38,4 @@ export default function Timeline() {
       </div>
     </section>
   );
-} 
+}

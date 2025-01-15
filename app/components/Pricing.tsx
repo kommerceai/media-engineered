@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const pricingPlans = [
   {
@@ -44,7 +44,8 @@ export default function Pricing() {
     <section id="pricing" className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-          Simple, transparent <span className="bg-yellow-300 px-2">pricing</span>
+          Simple, transparent{" "}
+          <span className="bg-yellow-300 px-2">pricing</span>
         </h2>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
           Choose the perfect plan to accelerate your growth
@@ -59,18 +60,24 @@ export default function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
               className={`rounded-lg p-8 ${
-                plan.highlighted 
-                  ? 'bg-black text-white ring-2 ring-yellow-300' 
-                  : 'bg-zinc-50'
+                plan.highlighted
+                  ? "bg-black text-white ring-2 ring-yellow-300"
+                  : "bg-zinc-50"
               }`}
             >
               <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-              <p className={`mb-6 ${plan.highlighted ? 'text-gray-300' : 'text-gray-600'}`}>
+              <p
+                className={`mb-6 ${plan.highlighted ? "text-gray-300" : "text-gray-600"}`}
+              >
                 {plan.description}
               </p>
               <div className="mb-6">
                 <span className="text-4xl font-bold">${plan.price}</span>
-                <span className={plan.highlighted ? 'text-gray-300' : 'text-gray-600'}>
+                <span
+                  className={
+                    plan.highlighted ? "text-gray-300" : "text-gray-600"
+                  }
+                >
                   /month
                 </span>
               </div>
@@ -97,8 +104,8 @@ export default function Pricing() {
               <button
                 className={`w-full py-3 px-4 rounded-full font-medium transition-colors ${
                   plan.highlighted
-                    ? 'bg-yellow-300 text-black hover:bg-yellow-400'
-                    : 'bg-black text-white hover:bg-zinc-800'
+                    ? "bg-yellow-300 text-black hover:bg-yellow-400"
+                    : "bg-black text-white hover:bg-zinc-800"
                 }`}
               >
                 Get Started
@@ -109,4 +116,4 @@ export default function Pricing() {
       </div>
     </section>
   );
-} 
+}

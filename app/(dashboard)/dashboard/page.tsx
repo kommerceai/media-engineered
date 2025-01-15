@@ -1,11 +1,30 @@
 import { auth } from "@clerk/nextjs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  BarChart3,
+  Bell,
+  Calendar,
+  Edit2,
+  Eye,
+  FileText,
+  MessageSquare,
+  Settings,
+  ThumbsUp,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { BarChart3, Users, FileText, Settings, TrendingUp, Calendar, Bell, Edit2, Eye, ThumbsUp, MessageSquare } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default async function DashboardPage() {
   const { userId } = auth();
-  
+
   if (!userId) {
     return null;
   }
@@ -40,28 +59,36 @@ export default async function DashboardPage() {
       description: "How to Grow Your Audience Organically",
       timestamp: "2 hours ago",
       icon: Edit2,
-      stats: { views: "234", likes: "45", comments: "12" }
+      stats: { views: "234", likes: "45", comments: "12" },
     },
     {
       title: "New milestone reached",
       description: "1000+ followers milestone achieved",
       timestamp: "1 day ago",
       icon: TrendingUp,
-      stats: { increase: "+23%" }
+      stats: { increase: "+23%" },
     },
     {
       title: "Content scheduled",
       description: "5 posts scheduled for next week",
       timestamp: "2 days ago",
       icon: Calendar,
-      stats: { scheduled: "5" }
-    }
+      stats: { scheduled: "5" },
+    },
   ];
 
   const upcomingContent = [
-    { title: "Social Media Strategy Guide", type: "Blog Post", date: "Tomorrow" },
+    {
+      title: "Social Media Strategy Guide",
+      type: "Blog Post",
+      date: "Tomorrow",
+    },
     { title: "Growth Hacking Tips", type: "Video", date: "Next Week" },
-    { title: "Community Building Workshop", type: "Live Event", date: "In 2 weeks" }
+    {
+      title: "Community Building Workshop",
+      type: "Live Event",
+      date: "In 2 weeks",
+    },
   ];
 
   return (
@@ -69,7 +96,9 @@ export default async function DashboardPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-4xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground mt-2">Track your content performance and engagement.</p>
+          <p className="text-muted-foreground mt-2">
+            Track your content performance and engagement.
+          </p>
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline" size="icon">
@@ -87,7 +116,9 @@ export default async function DashboardPage() {
           return (
             <Card key={stat.title}>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  {stat.title}
+                </CardTitle>
                 <Icon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
@@ -95,7 +126,9 @@ export default async function DashboardPage() {
                   <div className="text-2xl font-bold">{stat.value}</div>
                   <div className="text-sm text-green-500">{stat.change}</div>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {stat.description}
+                </p>
               </CardContent>
             </Card>
           );
@@ -119,25 +152,32 @@ export default async function DashboardPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-sm font-medium">{activity.title}</h4>
-                      <p className="text-sm text-muted-foreground">{activity.description}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {activity.description}
+                      </p>
                       <div className="flex items-center space-x-4 mt-2">
                         {activity.stats.views && (
                           <span className="text-xs flex items-center text-muted-foreground">
-                            <Eye className="h-3 w-3 mr-1" /> {activity.stats.views}
+                            <Eye className="h-3 w-3 mr-1" />{" "}
+                            {activity.stats.views}
                           </span>
                         )}
                         {activity.stats.likes && (
                           <span className="text-xs flex items-center text-muted-foreground">
-                            <ThumbsUp className="h-3 w-3 mr-1" /> {activity.stats.likes}
+                            <ThumbsUp className="h-3 w-3 mr-1" />{" "}
+                            {activity.stats.likes}
                           </span>
                         )}
                         {activity.stats.comments && (
                           <span className="text-xs flex items-center text-muted-foreground">
-                            <MessageSquare className="h-3 w-3 mr-1" /> {activity.stats.comments}
+                            <MessageSquare className="h-3 w-3 mr-1" />{" "}
+                            {activity.stats.comments}
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">{activity.timestamp}</p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {activity.timestamp}
+                      </p>
                     </div>
                   </div>
                 );
@@ -157,9 +197,13 @@ export default async function DashboardPage() {
                 <div key={index} className="flex items-center justify-between">
                   <div>
                     <h4 className="text-sm font-medium">{content.title}</h4>
-                    <p className="text-xs text-muted-foreground">{content.type}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {content.type}
+                    </p>
                   </div>
-                  <span className="text-xs text-muted-foreground">{content.date}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {content.date}
+                  </span>
                 </div>
               ))}
               <Button className="w-full mt-4" variant="outline">
@@ -228,4 +272,4 @@ export default async function DashboardPage() {
       </div>
     </div>
   );
-} 
+}

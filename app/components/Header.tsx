@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Navigation from './Navigation';
+import Navigation from "./Navigation";
 
 export default function Header() {
   return (
@@ -8,4 +8,4 @@ export default function Header() {
       <Navigation />
     </header>
   );
-} 
+}

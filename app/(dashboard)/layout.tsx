@@ -1,8 +1,9 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
+
 import { Sidebar } from "@/components/sidebar";
 
 export default function DashboardLayout({
@@ -32,10 +33,8 @@ export default function DashboardLayout({
         <Sidebar />
       </div>
       <main className="md:pl-72">
-        <div className="px-4 py-8">
-          {children}
-        </div>
+        <div className="px-4 py-8">{children}</div>
       </main>
     </div>
   );
-} 
+}

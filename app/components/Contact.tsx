@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -20,9 +21,9 @@ type FormState = {
 
 export default function Contact() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
   const [formState, setFormState] = useState<FormState>({
@@ -36,10 +37,10 @@ export default function Contact() {
     setFormState({ loading: true, error: null, success: false });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -47,24 +48,26 @@ export default function Contact() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Something went wrong');
+        throw new Error(data.error || "Something went wrong");
       }
 
       setFormState({ loading: false, error: null, success: true });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       setFormState({
         loading: false,
-        error: error instanceof Error ? error.message : 'Something went wrong',
+        error: error instanceof Error ? error.message : "Something went wrong",
         success: false,
       });
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -114,14 +117,16 @@ export default function Contact() {
                 <div className="text-red-500 text-sm">{formState.error}</div>
               )}
               {formState.success && (
-                <div className="text-green-500 text-sm">Message sent successfully!</div>
+                <div className="text-green-500 text-sm">
+                  Message sent successfully!
+                </div>
               )}
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full"
                 disabled={formState.loading}
               >
-                {formState.loading ? 'Sending...' : 'Send Message'}
+                {formState.loading ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </CardContent>
@@ -129,4 +134,4 @@ export default function Contact() {
       </div>
     </section>
   );
-} 
+}

@@ -1,26 +1,30 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { FiChevronDown } from 'react-icons/fi';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FiChevronDown } from "react-icons/fi";
 
 const faqs = [
   {
-    question: 'How long does it take to see results?',
-    answer: 'While results can vary based on your starting point and goals, most clients see significant improvements in engagement and growth within the first 2-3 months of implementing our strategies.'
+    question: "How long does it take to see results?",
+    answer:
+      "While results can vary based on your starting point and goals, most clients see significant improvements in engagement and growth within the first 2-3 months of implementing our strategies.",
   },
   {
-    question: 'What platforms do you specialize in?',
-    answer: 'We specialize in all major social media platforms including Instagram, TikTok, YouTube, and Twitter. Our strategies are tailored to maximize your presence on the platforms most relevant to your audience.'
+    question: "What platforms do you specialize in?",
+    answer:
+      "We specialize in all major social media platforms including Instagram, TikTok, YouTube, and Twitter. Our strategies are tailored to maximize your presence on the platforms most relevant to your audience.",
   },
   {
-    question: 'Do you offer customized packages?',
-    answer: 'Yes! We understand that every creator is unique. We offer customized packages based on your specific needs, goals, and budget. Schedule a discovery call to discuss your requirements.'
+    question: "Do you offer customized packages?",
+    answer:
+      "Yes! We understand that every creator is unique. We offer customized packages based on your specific needs, goals, and budget. Schedule a discovery call to discuss your requirements.",
   },
   {
-    question: 'How do you measure success?',
-    answer: 'We track various metrics including engagement rates, follower growth, reach, and conversion rates. We provide detailed monthly reports and adjust strategies based on the data.'
-  }
+    question: "How do you measure success?",
+    answer:
+      "We track various metrics including engagement rates, follower growth, reach, and conversion rates. We provide detailed monthly reports and adjust strategies based on the data.",
+  },
 ];
 
 export default function FAQ() {
@@ -61,14 +65,14 @@ export default function FAQ() {
                 <span className="text-white font-medium">{faq.question}</span>
                 <FiChevronDown
                   className={`text-yellow-300 transform transition-transform ${
-                    openIndex === index ? 'rotate-180' : ''
+                    openIndex === index ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {openIndex === index && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
+                  animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                   className="p-4 bg-zinc-800 rounded-b-lg mt-px"
@@ -82,4 +86,4 @@ export default function FAQ() {
       </div>
     </section>
   );
-} 
+}

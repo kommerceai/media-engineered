@@ -3,6 +3,7 @@
 ## Public Website
 
 ### Homepage Layout
+
 ```
 ┌──────────────────────────────────┐
 │ Navigation                       │
@@ -42,6 +43,7 @@
 ```
 
 ### Navigation
+
 ```
 ┌──────────────────────────────────┐
 │ Logo   Services  Work  Contact   │
@@ -50,6 +52,7 @@
 ```
 
 ### Services Card
+
 ```
 ┌──────────────────────────┐
 │ [Icon]                   │
@@ -67,6 +70,7 @@
 ```
 
 ### Contact Form
+
 ```
 ┌──────────────────────────┐
 │ Contact Us               │
@@ -100,6 +104,7 @@
 ## Dashboard
 
 ### Main Layout
+
 ```
 ┌──────────────────────────────────┐
 │ Top Navigation Bar               │
@@ -116,6 +121,7 @@
 ```
 
 ### Campaign Dashboard
+
 ```
 ┌──────────────────────────────────┐
 │ Campaign Overview                │
@@ -138,6 +144,7 @@
 ```
 
 ### Creator Management
+
 ```
 ┌──────────────────────────────────┐
 │ Creators                         │
@@ -161,6 +168,7 @@
 ## Mobile Responsiveness
 
 ### Mobile Navigation
+
 ```
 ┌──────────────────┐
 │ Logo    [≡ Menu] │
@@ -173,6 +181,7 @@
 ```
 
 ### Mobile Services Grid
+
 ```
 ┌──────────────────┐
 │ ┌──────────────┐ │
@@ -193,6 +202,7 @@
 ## Animation States
 
 ### Button Hover
+
 ```
 Normal:   [Get Started]
 Hover:    [Get Started →]
@@ -200,6 +210,7 @@ Active:   [Get Started →]
 ```
 
 ### Form Submit
+
 ```
 Normal:   [Submit]
 Loading:  [Sending...]
@@ -208,6 +219,7 @@ Error:    [× Try Again]
 ```
 
 ### Page Transitions
+
 ```
 Enter:
   Initial: opacity: 0, y: 20
@@ -216,4 +228,4 @@ Enter:
 Exit:
   Initial: opacity: 1, y: 0
   Animate: opacity: 0, y: -20
-``` 
+```
