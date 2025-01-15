@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, UserButton } from '@clerk/nextjs';
+import { Loader2 } from 'lucide-react';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const { isSignedIn, user } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,10 +51,18 @@ export default function Navigation() {
             <Link href="/#contact" className={`hover:text-primary ${activeSection === 'contact' ? 'text-primary' : ''}`}>
               Contact
             </Link>
-            {isSignedIn ? (
-              <Link href="/dashboard">
-                <Button variant="default">Dashboard</Button>
-              </Link>
+            {!isLoaded ? (
+              <Button variant="ghost" disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Loading...
+              </Button>
+            ) : isSignedIn ? (
+              <div className="flex items-center space-x-4">
+                <Link href="/dashboard">
+                  <Button variant="default">Dashboard</Button>
+                </Link>
+                <UserButton afterSignOutUrl="/" />
+              </div>
             ) : (
               <div className="flex items-center space-x-4">
                 <Link href="/sign-in">
@@ -101,10 +110,20 @@ export default function Navigation() {
             <Link href="/#contact" className="block hover:text-primary">
               Contact
             </Link>
-            {isSignedIn ? (
-              <Link href="/dashboard">
-                <Button className="w-full" variant="default">Dashboard</Button>
-              </Link>
+            {!isLoaded ? (
+              <Button variant="ghost" disabled className="w-full">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Loading...
+              </Button>
+            ) : isSignedIn ? (
+              <div className="space-y-2">
+                <Link href="/dashboard">
+                  <Button className="w-full" variant="default">Dashboard</Button>
+                </Link>
+                <div className="flex justify-center">
+                  <UserButton afterSignOutUrl="/" />
+                </div>
+              </div>
             ) : (
               <div className="space-y-2">
                 <Link href="/sign-in">
