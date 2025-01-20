@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="scroll-smooth">
-        <body className={inter.className}>
+        <body className={`${inter.className} antialiased`}>
           <Navigation />
-          {children}
+          <div className="pt-16">{children}</div>
         </body>
       </html>
     </ClerkProvider>
