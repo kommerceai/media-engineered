@@ -2,15 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, Globe2, LayoutGrid, LineChart, Mail, MessageSquare, Users2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+import { CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -28,234 +25,154 @@ const stagger = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen" key="homepage-v4">
-      {/* Hero Section */}
-      <motion.section
-        initial="initial"
-        animate="animate"
-        variants={stagger}
-        className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background overflow-hidden"
-      >
-        <motion.div
-          variants={fadeIn}
-          className="absolute inset-0 grid grid-cols-2 md:grid-cols-3 gap-4 p-4 opacity-5 pointer-events-none"
-        >
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="h-full w-full bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl"
-            />
-          ))}
-        </motion.div>
-        <div className="container relative px-4 md:px-6">
-          <motion.div
-            variants={stagger}
-            className="flex flex-col items-center space-y-4 text-center"
-          >
-            <motion.div variants={fadeIn} className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-200">
-                Transform Your Digital Presence
-              </h1>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                We help brands grow through strategic content creation and
-                data-driven marketing solutions.
-              </p>
-            </motion.div>
-            <motion.div
-              variants={fadeIn}
-              className="flex flex-col sm:flex-row gap-4 sm:space-x-4"
-            >
-              <Link href="/contact">
-                <Button size="lg" className="group">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-              <Link href="/work">
-                <Button variant="outline" size="lg" className="group">
-                  View Our Work
-                  <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
-                </Button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Services Section */}
-      <motion.section
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        variants={stagger}
-        className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-      >
-        <div className="container px-4 md:px-6">
-          <motion.div variants={fadeIn} className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Services</h2>
-            <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-              Comprehensive solutions tailored to your needs
-            </p>
-          </motion.div>
-          <motion.div
-            variants={stagger}
-            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {[
-              {
-                title: "Content Creation",
-                description:
-                  "Professional content that engages and converts your target audience.",
-                features: [
-                  "Social Media Content",
-                  "Blog Posts & Articles",
-                  "Video Production",
-                  "Graphic Design",
-                ],
-              },
-              {
-                title: "Strategy & Growth",
-                description:
-                  "Data-driven strategies to grow your audience and increase engagement.",
-                features: [
-                  "Market Research",
-                  "Competitor Analysis",
-                  "Growth Planning",
-                  "Performance Tracking",
-                ],
-              },
-              {
-                title: "Community Building",
-                description:
-                  "Build and nurture an engaged community around your brand.",
-                features: [
-                  "Community Management",
-                  "Engagement Strategies",
-                  "Event Planning",
-                  "Brand Advocacy",
-                ],
-              },
-            ].map((service, index) => (
-              <motion.div key={index} variants={fadeIn}>
-                <HoverCard openDelay={0} closeDelay={0}>
-                  <HoverCardTrigger asChild>
-                    <Card className="p-6 cursor-pointer transition-all hover:shadow-lg hover:scale-105">
-                      <h3 className="text-2xl font-bold">{service.title}</h3>
-                      <p className="text-gray-500 dark:text-gray-400 mt-2">
-                        {service.description}
-                      </p>
-                    </Card>
-                  </HoverCardTrigger>
-                  <HoverCardContent className="w-80">
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold">Includes:</h4>
-                      <ul className="text-sm space-y-1">
-                        {service.features.map((feature, i) => (
-                          <li key={i} className="flex items-center">
-                            <ArrowRight className="h-3 w-3 mr-2 text-primary" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </HoverCardContent>
-                </HoverCard>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Stats Section */}
-      <motion.section
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        variants={stagger}
-        className="w-full py-12 md:py-24 lg:py-32"
-      >
-        <div className="container px-4 md:px-6">
-          <motion.div
-            variants={stagger}
-            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {[
-              { value: "50M+", label: "Impressions Generated" },
-              { value: "1000+", label: "Active Creators" },
-              { value: "95%", label: "Client Satisfaction" },
-              { value: "24/7", label: "Support Available" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn}
-                className="flex flex-col items-center space-y-2 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <motion.h3
-                  initial={{ scale: 0.5 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                  className="text-4xl font-bold text-primary"
-                >
-                  {stat.value}
-                </motion.h3>
-                <p className="text-gray-500 dark:text-gray-400 text-center">
-                  {stat.label}
+    <div className="flex flex-col min-h-screen">
+      <header className="px-4 lg:px-6 h-14 flex items-center">
+        <Link className="flex items-center justify-center" href="#">
+          <Globe2 className="h-6 w-6" />
+          <span className="sr-only">Media Engineered</span>
+        </Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+            Services
+          </Link>
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+            About
+          </Link>
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+            Blog
+          </Link>
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+            Contact
+          </Link>
+        </nav>
+      </header>
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                  Transform Your Digital Marketing Strategy
+                </h1>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                  Drive growth with data-driven insights and strategic content creation. Let us help you reach your target audience effectively.
                 </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* CTA Section */}
-      <motion.section
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        variants={stagger}
-        className="w-full py-12 md:py-24 lg:py-32 bg-primary relative overflow-hidden"
-      >
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute inset-0 bg-gradient-to-r from-primary-foreground/10 to-transparent rounded-full blur-3xl"
-        />
-        <div className="container relative px-4 md:px-6">
-          <motion.div
-            variants={stagger}
-            className="flex flex-col items-center space-y-4 text-center text-white"
-          >
-            <motion.div variants={fadeIn} className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Ready to Transform Your Brand?
-              </h2>
-              <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl">
-                Join our network of successful creators and start growing your
-                audience today.
-              </p>
-            </motion.div>
-            <motion.div
-              variants={fadeIn}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link href="/contact">
-                <Button variant="secondary" size="lg" className="group">
-                  Get Started Now
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
+              </div>
+              <div className="w-full max-w-sm space-y-2">
+                <form className="flex space-x-2">
+                  <Input className="max-w-lg flex-1" placeholder="Enter your email" type="email" />
+                  <Button type="submit">
+                    Get Started
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </form>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Start your journey today. No credit card required.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <LayoutGrid className="w-8 h-8" />
+                    <h3 className="font-bold">Content Strategy</h3>
+                  </div>
+                  <p className="mt-2 text-gray-500 dark:text-gray-400">
+                    Develop comprehensive content strategies that align with your business goals.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <LineChart className="w-8 h-8" />
+                    <h3 className="font-bold">Analytics & Insights</h3>
+                  </div>
+                  <p className="mt-2 text-gray-500 dark:text-gray-400">
+                    Make data-driven decisions with our advanced analytics and reporting.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <Users2 className="w-8 h-8" />
+                    <h3 className="font-bold">Social Media</h3>
+                  </div>
+                  <p className="mt-2 text-gray-500 dark:text-gray-400">
+                    Engage your audience across all major social media platforms.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-10 px-4 md:grid-cols-2">
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                  Why Choose Us?
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400">
+                  We combine industry expertise with data-driven insights to deliver exceptional results.
+                </p>
+                <ul className="grid gap-4">
+                  <li className="flex items-center gap-4">
+                    <CheckCircle2 className="w-6 h-6" />
+                    <span>Proven track record of success</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <CheckCircle2 className="w-6 h-6" />
+                    <span>Customized strategies for your business</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <CheckCircle2 className="w-6 h-6" />
+                    <span>Dedicated support team</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="flex flex-col gap-2 min-h-[300px] rounded-xl border bg-gray-100 p-8 dark:bg-gray-800">
+                <div className="flex items-center gap-4">
+                  <MessageSquare className="w-8 h-8" />
+                  <h3 className="font-bold">Get in Touch</h3>
+                </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Ready to transform your digital presence? Contact us today.
+                </p>
+                <div className="flex flex-col gap-2 mt-auto">
+                  <Button className="w-full">
+                    Schedule a Call
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button className="w-full" variant="outline">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Email Us
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          © 2024 Media Engineered. All rights reserved.
+        </p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </Link>
+        </nav>
+      </footer>
     </div>
   );
 }
