@@ -28,7 +28,7 @@ const stagger = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" key="homepage-v2">
       {/* Hero Section */}
       <motion.section
         initial="initial"
