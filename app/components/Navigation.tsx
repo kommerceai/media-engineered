@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth, UserButton } from "@clerk/nextjs";
-import { Loader2, Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Loader2, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,23 +17,11 @@ import {
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
   const { isSignedIn, isLoaded } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = ["work", "services", "contact"];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,7 +29,9 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-background/80 backdrop-blur-sm border-b" : ""
       }`}
@@ -48,32 +39,32 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-xl font-bold">
-            Organic Marketing
+            Media Engineered
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href="/#work"
-              className={`text-sm font-medium hover:text-primary transition-colors ${
-                activeSection === "work" ? "text-primary" : ""
-              }`}
-            >
-              Work
-            </Link>
-            <Link
-              href="/#services"
-              className={`text-sm font-medium hover:text-primary transition-colors ${
-                activeSection === "services" ? "text-primary" : ""
-              }`}
+              href="/services"
+              className="text-sm font-medium hover:text-primary transition-colors"
             >
               Services
             </Link>
             <Link
-              href="/#contact"
-              className={`text-sm font-medium hover:text-primary transition-colors ${
-                activeSection === "contact" ? "text-primary" : ""
-              }`}
+              href="/case-studies"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              Case Studies
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm font-medium hover:text-primary transition-colors"
             >
               Contact
             </Link>
@@ -112,15 +103,19 @@ export default function Navigation() {
                   </Button>
                 </Link>
                 <Link href="/sign-up">
-                  <Button variant="default" size="sm">
+                  <Button
+                    size="sm"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
                     Get Started
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 hover:bg-accent rounded-md"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -134,22 +129,36 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{
+            opacity: isMobileMenuOpen ? 1 : 0,
+            height: isMobileMenuOpen ? "auto" : 0,
+          }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden overflow-hidden"
+        >
+          <div className="py-4 space-y-4">
             <Link
-              href="/#work"
-              className="block text-sm font-medium hover:text-primary transition-colors"
-            >
-              Work
-            </Link>
-            <Link
-              href="/#services"
+              href="/services"
               className="block text-sm font-medium hover:text-primary transition-colors"
             >
               Services
             </Link>
             <Link
-              href="/#contact"
+              href="/case-studies"
+              className="block text-sm font-medium hover:text-primary transition-colors"
+            >
+              Case Studies
+            </Link>
+            <Link
+              href="/about"
+              className="block text-sm font-medium hover:text-primary transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
               className="block text-sm font-medium hover:text-primary transition-colors"
             >
               Contact
@@ -178,15 +187,19 @@ export default function Navigation() {
                   </Button>
                 </Link>
                 <Link href="/sign-up">
-                  <Button className="w-full" variant="default" size="sm">
+                  <Button
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    size="sm"
+                  >
                     Get Started
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
             )}
           </div>
-        )}
+        </motion.div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
