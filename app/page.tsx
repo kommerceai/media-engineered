@@ -28,7 +28,7 @@ const stagger = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen" key="homepage-v3">
+    <div className="flex flex-col min-h-screen" key="homepage-v4">
       {/* Hero Section */}
       <motion.section
         initial="initial"
@@ -53,7 +53,7 @@ export default function Home() {
             className="flex flex-col items-center space-y-4 text-center"
           >
             <motion.div variants={fadeIn} className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-200">
                 Transform Your Digital Presence
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
@@ -66,13 +66,13 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4 sm:space-x-4"
             >
               <Link href="/contact">
-                <Button className="group">
+                <Button size="lg" className="group">
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/work">
-                <Button variant="outline" className="group">
+                <Button variant="outline" size="lg" className="group">
                   View Our Work
                   <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
                 </Button>
